@@ -1,8 +1,8 @@
 # NutriCalc
 ![Screenshot](https://github.com/william-andersson/nutricalc/blob/main/main_window.png)<br>
-The run.sh script initiates a virtual environment and starts the application.<br>
-`chmod 755 run.sh`<br>
-`./run.sh`
+Test using the run-script. It initiates a virtual environment and starts the application.<br>
+Linux: `chmod 755 run.sh` && `./run.sh`<br>
+Windows: `run.bat`<br>
 
 ## Description
 Calculate nutritional values for product labeling.<br>
