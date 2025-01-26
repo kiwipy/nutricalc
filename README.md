@@ -2,15 +2,17 @@
 Calculate nutritional values for product labeling. Pick the ingredients and amount used according to recepie and optionaly save the product to the database for later use.
 
 ![Screenshot](https://github.com/kiwipy/nutricalc/blob/main/docs/main_window.png)<br>
-Use the universal build script.<br>
-Linux: `chmod 755 build.py && ./build.py --binary`<br>
-Windows: `build.py --binary`<br>
 
 > [!NOTE]
 > :blue_square: THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT ANY WARRANTY.<br>
 > :blue_square: This application is made to comply with EU regulations only.<br>
 > :blue_square: All values except 'Fiber content' is required on labels.<br>
 > :blue_square: Alcohol content is purpesly left out! (Alcohol content is also used to calculate calories, add it to the code if you need it in production.
+
+## Build instructions
+**Use the cross-platform build.py script.**<br>
+Linux: `chmod 755 build.py && ./build.py --binary`<br>
+Windows: `build.py --binary`<br>
 
 ## Manage the database
 In this window you can remove products from the database by selecting the name and click 'remove'. You can also add products that do not need to be calculated (e.g. bought finished products) or update the values of existing products.
