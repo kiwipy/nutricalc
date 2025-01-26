@@ -3,12 +3,6 @@ Calculate nutritional values for product labeling. Pick the ingredients and amou
 
 ![Screenshot](https://github.com/kiwipy/nutricalc/blob/main/docs/main_window.png)<br>
 
-> [!NOTE]
-> :blue_square: THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT ANY WARRANTY.<br>
-> :blue_square: This application is made to comply with EU regulations only.<br>
-> :blue_square: All values except 'Fiber content' is required on labels.<br>
-> :blue_square: Alcohol content is purpesly left out! (Alcohol content is also used to calculate calories, add it to the code if you need it in production.
-
 ## Build instructions
 **Use the cross-platform build.py script.**<br>
 Linux: `chmod 755 build.py && ./build.py --binary`<br>
@@ -21,6 +15,12 @@ In this window you can remove products from the database by selecting the name a
 
 > [!NOTE]
 > When adding bought products remember that 'Fiber content' is not required on labels BUT is used to correctly calculate calories, contact the producer if the label does not include fiber content.
+
+> [!NOTE]
+> :blue_square: THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT ANY WARRANTY.<br>
+> :blue_square: This application is made to comply with EU regulations only.<br>
+> :blue_square: All values except 'Fiber content' is required on labels.<br>
+> :blue_square: Alcohol content is purpesly left out! (Alcohol content is also used to calculate calories, add it to the code if you need it in production.
 
 ## Credits
 <img align="left" src="https://github.com/kiwipy/nutricalc/blob/main/data/AppIcon.png" alt="AppIcon" width="32" height="32">
