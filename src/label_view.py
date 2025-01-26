@@ -1,10 +1,7 @@
-# -*- coding: utf-8 -*-
-"""
-File name: label_view.py
-Author: William Andersson
-License: MIT License
-Description: Function to update label values for NutriCalc
-"""
+# SPDX-License-Identifier: MIT
+# Copyright 2024, The NutriCalc developers
+# Author: William Andersson <contact.kiwipy@gmail.com>
+
 def update_label_values(self):
     kcal = kj = fat = sat_fat = carbs = sugar = protein = salt = fiber = 0
     total_amount = 0
@@ -28,9 +25,7 @@ def update_label_values(self):
                 salt += float(product[0][6]) * quotient
                 fiber += float(product[0][7]) * quotient
 
-    #
-    # Calculate 'kj' & 'kcal' and set values
-    #
+    # Calculation of 'kj' & 'kcal'
     kj = int((protein*17)+(carbs*17)+(fiber*8)+(fat*37))
     kcal = int(kj * 0.239)
     self.ui.fat_value.setText(f"{round(fat, 1)}g")

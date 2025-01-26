@@ -2,7 +2,8 @@
 #
 # MIT License
 #
-# Copyright (c) 2024 William Andersson
+# Copyright 2024, The NutriCalc developers
+# Authors: William Andersson <contact.kiwipy@gmail.com>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -26,8 +27,8 @@ import sys
 import os
 
 APPLICATION = 'NutriCalc'
-VERSION = '0.9.0'
+VERSION = '1.2.0'
 
 if __name__ == '__main__':
     from main import main
-    sys.exit(main(VERSION))
+    sys.exit(main(VERSION, APPLICATION))

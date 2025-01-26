@@ -1,0 +1,7 @@
+# List of source files containing translatable strings.
+# self.tr() and QCoreApplication.translate()
+src/main.py
+src/window.ui
+src/database.ui
+src/app_path.py
+src/db_view.py

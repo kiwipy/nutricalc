@@ -1,0 +1,6 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file alias="icon.png">../data/AppIcon.png</file>
+    <file alias="sv_SE.qm">../lang/sv_SE.qm</file>
+</qresource>
+</RCC>
