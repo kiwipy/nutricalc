@@ -21,5 +21,5 @@ In this window you can remove products from the database by selecting the name a
 > When adding bought products remember that 'Fiber content' is not required on labels BUT is used to correctly calculate calories, contact the producer if the label does not include fiber content.
 
 ## Credits
-![Icon](https://github.com/kiwipy/nutricalc/blob/main/data/AppIcon.png)
+<img align="left" src="https://github.com/kiwipy/nutricalc/blob/main/data/AppIcon.png" alt="AppIcon" width="32" height="32">
 <a href="https://www.flaticon.com/free-icons/flask" title="flask icons">Flask icons created by Freepik - Flaticon</a>
