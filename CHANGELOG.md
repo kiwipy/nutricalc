@@ -1,4 +1,6 @@
 ## Version (unreleased)
+### Fixed
+- resources.qrc: AppIcon alias
 
 ## Version 1.2.0 (2025-01-26)
 ### Added
