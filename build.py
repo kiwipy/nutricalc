@@ -16,9 +16,10 @@ import os
 import sys
 import shutil
 import platform
+import fnmatch
 from pathlib import Path
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 
 PLATFORM = platform.uname().system
 PYTHON_VER = f"{sys.version_info.major}.{sys.version_info.minor}"
@@ -27,6 +28,7 @@ APP_ICON = sorted(Path().glob("data/*.ico"))
 GENERATED_FILES = []
 
 def check_for_dependencies():
+    insert_wild = {"-": "?", "_": "?"}
     installed = []
     missing = []
 
@@ -42,7 +44,10 @@ def check_for_dependencies():
 
     with open('requirements.txt', 'r') as _file:
         for line in _file:
-            if line.strip().lower() not in installed:
+            _line = line.strip().lower()
+            for old, new in insert_wild.items():
+                _line = _line.replace(old, new)
+            if not fnmatch.filter(installed, _line + '*'):
                 missing.append(line.strip())
 
     to_install = ' '.join(missing)
