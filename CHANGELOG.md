@@ -3,6 +3,7 @@
 - resources.qrc: AppIcon alias
 - build.py: `check_for_dependencies()` parse requirements.txt using wildcards
   for underscores/hyphens and add * to end for better matching.
+- sv_SE.ts: "of which" lower case letters.
 
 ### Changed
 - Only using PySide6-Essentials to save space
