@@ -1,11 +1,11 @@
 ## Version (unreleased)
 ### Fixed
 - resources.qrc: AppIcon alias
+- build.py: `check_for_dependencies()` parse requirements.txt using wildcards
+  for underscores/hyphens and add * to end for better matching.
 
 ### Changed
 - Only using PySide6-Essentials to save space
-- build.py: `check_for_dependencies()` parse requirements.txt using wildcards
-  for underscores/hyphens and add * to end for better matching.
 
 ## Version 1.2.0 - (2025-01-26)
 ### Added
