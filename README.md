@@ -1,9 +1,10 @@
 # NutriCalc
 Pick the ingredients and amount used according to recepie and the application calculates the nutritional values needed for product labeling, including fiber content which is optional on labels.
-> [!TIP]
-> Don't forget to add water if used.
 
 ![Screenshot](https://github.com/kiwipy/nutricalc/blob/main/docs/main_window.png)<br>
+
+> [!TIP]
+> Don't forget to add water if used.
 
 ## Manage the database
 In the database window you can remove products from the database by selecting a row and clicking "Remove". You can also Update the values of the selected row and add products that do not need to be calculated (e.g. bought finished products).
