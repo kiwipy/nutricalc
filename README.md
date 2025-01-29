@@ -1,5 +1,7 @@
 # NutriCalc
-Calculate nutritional values for product labeling. Pick the ingredients and amount used according to recepie and optionaly save the product to the database for later use.
+Pick the ingredients and amount used according to recepie and the application calculates the nutritional values needed for product labeling, including fiber content which is optional on labels.
+> [!TIP]
+> Don't forget to add water if used.
 
 ![Screenshot](https://github.com/kiwipy/nutricalc/blob/main/docs/main_window.png)<br>
 
@@ -20,7 +22,10 @@ In this window you can remove products from the database by selecting the name a
 > :blue_square: THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT ANY WARRANTY.<br>
 > :blue_square: This application is made to comply with EU regulations only.<br>
 > :blue_square: All values except 'Fiber content' is required on labels.<br>
-> :blue_square: Alcohol content is purpesly left out! (Alcohol content is also used to calculate calories, add it to the code if you need it in production.
+
+## Limitations
+Alcohol content is left out (Alcohol content is also used to calculate calories), if you need it in production feel free to fork this repo.<br><br>
+As for now the application supports up to 12 ingredients.
 
 ## Credits
 <img align="left" src="https://github.com/kiwipy/nutricalc/blob/main/data/AppIcon.png" alt="AppIcon" width="32" height="32">
