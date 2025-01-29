@@ -177,7 +177,7 @@
     <message>
         <location filename="../src/window.ui" line="1110"/>
         <source>    Of which Sugars</source>
-        <translation>    varav Sockerarter</translation>
+        <translation>    varav sockerarter</translation>
     </message>
     <message>
         <location filename="../src/main.py" line="45"/>
@@ -217,7 +217,7 @@
     <message>
         <location filename="../src/window.ui" line="1357"/>
         <source>    Of which Saturates</source>
-        <translation>    varav Mättat fett</translation>
+        <translation>    varav mättat fett</translation>
     </message>
     <message>
         <location filename="../src/window.ui" line="1398"/>
