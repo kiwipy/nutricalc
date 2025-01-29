@@ -18,14 +18,13 @@ In this window you can remove products from the database by selecting the name a
 > [!NOTE]
 > When adding bought products remember that 'Fiber content' is not required on labels BUT is used to correctly calculate calories, contact the producer if the label does not include fiber content.
 
+## Limitations
+Alcohol content is left out (Alcohol content is also used to calculate calories), if you need it in production feel free to fork this repo.<br><br>
+As for now the application supports up to 12 ingredients.<br>
+
 > [!NOTE]
 > :blue_square: THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT ANY WARRANTY.<br>
 > :blue_square: This application is made to comply with EU regulations only.<br>
-> :blue_square: All values except 'Fiber content' is required on labels.<br>
-
-## Limitations
-Alcohol content is left out (Alcohol content is also used to calculate calories), if you need it in production feel free to fork this repo.<br><br>
-As for now the application supports up to 12 ingredients.
 
 ## Credits
 <img align="left" src="https://github.com/kiwipy/nutricalc/blob/main/data/AppIcon.png" alt="AppIcon" width="32" height="32">
