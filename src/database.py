@@ -4,7 +4,7 @@
 
 import sqlite3
 from PySide6.QtWidgets import QTableWidgetItem, QDialog
-from database import Ui_Dialog
+from BaseWindow import Ui_Dialog
 
 NEW_DB = """CREATE TABLE IF NOT EXISTS products (
             Product TEXT PRIMARY KEY,

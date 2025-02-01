@@ -2,7 +2,7 @@
 # Copyright 2024, The NutriCalc developers
 # Author: William Andersson <contact.kiwipy@gmail.com>
 
-def update_label_values(self):
+def update_values(self):
     kcal = kj = fat = sat_fat = carbs = sugar = protein = salt = fiber = 0
     total_amount = 0
 

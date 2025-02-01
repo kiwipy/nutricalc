@@ -9,10 +9,10 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLabel
 from PySide6.QtCore import QFile, QTranslator, QLocale, QLibraryInfo
 
 import resources
-import db_view
-from window import Ui_MainWindow
-from label_view import update_label_values
-from app_path import local_path_for
+import database
+import label
+from local_path import local_path_for
+from MainWindow import Ui_MainWindow
 
 class MainWindow(QMainWindow):
     def __init__(self, *args, **kwargs):
@@ -46,15 +46,15 @@ class MainWindow(QMainWindow):
                 self.ComboBox_tuple[index].activated.connect(lambda checked, index=index: self.ComboBox_tuple[index+1].setEnabled(True))
 
         self.ui.clear_btn.clicked.connect(self.clear)
-        self.ui.save_btn.clicked.connect(lambda: db_view.db_save(self))
-        self.ui.base_btn.clicked.connect(lambda: db_view.db_manage(self))
+        self.ui.save_btn.clicked.connect(lambda: database.db_save(self))
+        self.ui.base_btn.clicked.connect(lambda: database.db_manage(self))
 
         self.db_store = local_path_for(kwargs['application']) / "default.db"
-        db_view.db_load(self)
+        database.db_load(self)
         
         for spinbox in self.SpinBox_tuple:
         # When the value off all QSpinBox changes.
-            spinbox.valueChanged.connect(lambda: update_label_values(self))
+            spinbox.valueChanged.connect(lambda: label.update_values(self))
         
         self.upd_combobox()
     
@@ -62,7 +62,7 @@ class MainWindow(QMainWindow):
         for combobox in self.ComboBox_tuple:
         # Populate all QComboBox with products from database.
             combobox.clear()
-            for product in db_view.db_get_items(self):
+            for product in database.db_get_items(self):
                 combobox.addItem(product[0])
             self.clear()
         
