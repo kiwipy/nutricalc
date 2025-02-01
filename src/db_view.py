@@ -62,6 +62,9 @@ def db_save(self):
     self.ui.title.setText("")
     self.ui.title.setPlaceholderText(self.tr("Title"))
 
+def db_get_items(self):
+    return self.cursor.execute("SELECT Product FROM products")
+
 def db_manage(self):
     def edit_product(row, column):
         select = self.cursor.execute(f"SELECT * FROM products LIMIT 1 OFFSET {row}").fetchall()

@@ -62,7 +62,7 @@ class MainWindow(QMainWindow):
         for combobox in self.ComboBox_tuple:
         # Populate all QComboBox with products from database.
             combobox.clear()
-            for product in self.cursor.execute("SELECT Product FROM products"):
+            for product in db_view.db_get_items(self):
                 combobox.addItem(product[0])
             self.clear()
         
