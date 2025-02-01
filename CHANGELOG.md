@@ -7,6 +7,7 @@
 
 ### Changed
 - Only using PySide6-Essentials to save space
+- main.py: moved database load & save function to db_view.py
 
 ## Version 1.2.0 - (2025-01-26)
 ### Added

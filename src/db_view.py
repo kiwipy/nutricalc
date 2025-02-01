@@ -2,9 +2,67 @@
 # Copyright 2024, The NutriCalc developers
 # Author: William Andersson <contact.kiwipy@gmail.com>
 
+import sqlite3
 from PySide6.QtWidgets import QTableWidgetItem, QDialog
 from database import Ui_Dialog
-def manage_db(self):
+
+NEW_DB = """CREATE TABLE IF NOT EXISTS products (
+            Product TEXT PRIMARY KEY,
+            Fat NUMERIC,
+            Saturated NUMERIC,
+            Carbs NUMERIC,
+            Sugar NUMERIC,
+            Protein NUMERIC,
+            Salt NUMERIC,
+            Fiber NUMERIC);"""
+
+def db_load(self):
+    if self.db_store != None:
+        if not self.db_store.exists():
+            try:
+                self.database = sqlite3.connect(self.db_store)
+                self.cursor = self.database.cursor()
+                self.cursor.execute(NEW_DB)
+                self.database.commit()
+            except Exception as e:
+                print(f"Error: {e}")
+                self.err_msg(self.tr("Could not create database."))
+        else:
+            try:
+                self.database = sqlite3.connect(self.db_store)
+                self.cursor = self.database.cursor()
+            except Exception as e:
+                print(f"Error: {e}")
+                self.err_msg(self.tr("Could not load database."))
+    else:
+        self.err_msg(self.tr("No path for database."))
+
+def db_save(self):
+    # Save new product to database
+    Names = self.cursor.execute(f"SELECT Product FROM products WHERE Product='{self.ui.title.text().lower()}'").fetchall()
+    if self.ui.title.text().lower() == "":
+        self.info_msg(self.tr("Missing title for product."))
+    elif len(Names) > 0 and self.ui.title.text().lower() == Names[0][0]:
+        self.info_msg(self.tr("Product already exists in database."))
+    else:
+        title = self.ui.title.text().lower()
+        fat = self.ui.fat_value.text()[:-1]
+        satfat = self.ui.sat_fat_value.text()[:-1]
+        carbs = self.ui.carb_value.text()[:-1]
+        sugar = self.ui.sugar_value.text()[:-1]
+        prot = self.ui.protein_value.text()[:-1]
+        salt = self.ui.salt_value.text()[:-1]
+        fiber = self.ui.fiber_value.text()[:-1]
+        self.cursor.execute(f"INSERT INTO products VALUES (\"{title}\", {fat}, {satfat}, {carbs}, {sugar}, {prot}, {salt}, {fiber})")
+        self.database.commit()
+
+        for combobox in self.ComboBox_tuple:
+            combobox.addItem(self.ui.title.text().lower())
+        self.clear()
+    self.ui.title.setText("")
+    self.ui.title.setPlaceholderText(self.tr("Title"))
+
+def db_manage(self):
     def edit_product(row, column):
         select = self.cursor.execute(f"SELECT * FROM products LIMIT 1 OFFSET {row}").fetchall()
         self.db.table.selectRow(row)
