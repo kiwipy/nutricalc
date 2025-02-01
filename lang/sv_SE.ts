@@ -47,6 +47,11 @@
         <source>Title</source>
         <translation>Titel</translation>
     </message>
+    <message>
+        <location filename="../src/database.py" line="93"/>
+        <source>No product selected for removal.</source>
+        <translation>Ingen produkt vald för borttagning.</translation>
+    </message>
 </context>
 <context>
     <name>Dialog</name>
