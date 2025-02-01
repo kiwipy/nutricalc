@@ -90,7 +90,7 @@ def db_manage(self):
             self.db.add_btn.setText(self.tr("Add"))
             self.db.rm_btn.setEnabled(False)
         else:
-            self.info_msg("No product selected for removal.")
+            self.info_msg(self.tr("No product selected for removal."))
                 
     def add_product():
         if self.db.add_btn.text() == self.tr("Update"):
