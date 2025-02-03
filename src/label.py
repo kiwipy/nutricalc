@@ -13,7 +13,7 @@ def update_values(self):
     for index in range(len(self.ComboBox_tuple)):
         # Calculate energy content for each by 100g
         if self.ComboBox_tuple[index].currentIndex() != -1:
-            product = self.cursor.execute(f"SELECT * FROM products WHERE Product='{self.ComboBox_tuple[index].currentText()}'").fetchall()
+            product = self.database.get_item(self.ComboBox_tuple[index].currentText())
             if self.SpinBox_tuple[index].value() != 0:
                 #print(f"{product[0]}")
                 quotient = self.SpinBox_tuple[index].value() / total_amount

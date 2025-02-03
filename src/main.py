@@ -5,14 +5,15 @@
 import sys
 
 from PySide6 import QtGui
-from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLabel
+from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox, QLabel, QTableWidgetItem, QDialog
 from PySide6.QtCore import QFile, QTranslator, QLocale, QLibraryInfo
 
 import resources
-import database
 import label
+from database import Database
 from local_path import local_path_for
 from MainWindow import Ui_MainWindow
+from BaseWindow import Ui_Dialog
 
 class MainWindow(QMainWindow):
     def __init__(self, *args, **kwargs):
@@ -33,9 +34,9 @@ class MainWindow(QMainWindow):
                                self.ui.combo_4, self.ui.combo_5, self.ui.combo_6,
                                self.ui.combo_7, self.ui.combo_8, self.ui.combo_9,
                                self.ui.combo_10, self.ui.combo_11, self.ui.combo_12)
-        self.db_categories = (self.tr("Product"), self.tr("Fat"), self.tr("Saturates"),
-                              self.tr("Carbohydrate"), self.tr("Sugars"),
-                              self.tr("Protein"), self.tr("Salt"), self.tr("Fiber"))
+        #self.db_categories = (self.tr("Product"), self.tr("Fat"), self.tr("Saturates"),
+        #                      self.tr("Carbohydrate"), self.tr("Sugars"),
+        #                      self.tr("Protein"), self.tr("Salt"), self.tr("Fiber"))
 
         for index in range(len(self.ComboBox_tuple)):
         # Activate QSpinBox when corresponding QComboBox is used.
@@ -46,11 +47,15 @@ class MainWindow(QMainWindow):
                 self.ComboBox_tuple[index].activated.connect(lambda checked, index=index: self.ComboBox_tuple[index+1].setEnabled(True))
 
         self.ui.clear_btn.clicked.connect(self.clear)
-        self.ui.save_btn.clicked.connect(lambda: database.db_save(self))
-        self.ui.base_btn.clicked.connect(lambda: database.db_manage(self))
+        self.ui.save_btn.clicked.connect(self.add_product)
+        self.ui.base_btn.clicked.connect(self.manage_db)
 
-        self.db_store = local_path_for(kwargs['application']) / "default.db"
-        database.db_load(self)
+
+        try:
+            self.db_store = local_path_for(kwargs['application']) / "default.db"
+            self.database = Database(self.db_store)
+        except Exception:
+            self.err_msg(self.tr("Could not load database."))
         
         for spinbox in self.SpinBox_tuple:
         # When the value off all QSpinBox changes.
@@ -62,7 +67,7 @@ class MainWindow(QMainWindow):
         for combobox in self.ComboBox_tuple:
         # Populate all QComboBox with products from database.
             combobox.clear()
-            for product in database.db_get_items(self):
+            for product in self.database.get_items():
                 combobox.addItem(product[0])
             self.clear()
         
@@ -81,7 +86,111 @@ class MainWindow(QMainWindow):
         self.msgBox.setInformativeText(info_str)
         self.msgBox.setStandardButtons(QMessageBox.Ok)
         self.msgBox.exec()
-        
+
+
+    def add_product(self):
+        new_item = (self.ui.title.text().lower(), self.ui.fat_value.text()[:-1],
+                    self.ui.sat_fat_value.text()[:-1], self.ui.carb_value.text()[:-1],
+                    self.ui.sugar_value.text()[:-1], self.ui.protein_value.text()[:-1],
+                    self.ui.salt_value.text()[:-1], self.ui.fiber_value.text()[:-1])
+        try:
+            self.database.add(new_item)
+        except NameError:
+            self.info_msg(self.tr("Missing title for product."))
+        except ValueError:
+            self.info_msg(self.tr("Product already exists in database."))
+        else:
+            self.upd_combobox()
+            self.clear()
+            self.ui.title.setText("")
+            self.ui.title.setPlaceholderText(self.tr("Title"))
+
+
+    def manage_db(self):
+        def update_table():
+            categories = [self.tr("Product"), self.tr("Fat"), self.tr("Saturates"),
+                          self.tr("Carbohydrate"), self.tr("Sugars"),
+                          self.tr("Protein"), self.tr("Salt"), self.tr("Fiber")]
+            rowcount = self.database.get_rowcount()
+            self.db.table.clear()
+            self.db.table.setRowCount(rowcount)
+            self.db.table.setColumnCount(len(categories))
+            self.db.table.horizontalHeaderItem(0)
+            self.db.table.setHorizontalHeaderLabels(categories)
+            self.db.table.setColumnWidth(0, 150)
+            for row, form in enumerate(self.database.select_all()):
+                for column, item in enumerate(form):
+                    self.db.table.setItem(row, column, QTableWidgetItem(str(item)))
+
+        def add_product():
+            new_item = (self.db.db_title.text().lower(), self.db.db_fat.value(),
+                        self.db.db_satfat.value(), self.db.db_carb.value(),
+                        self.db.db_sugar.value(), self.db.db_prot.value(),
+                        self.db.db_salt.value(), self.db.db_fiber.value())
+            if self.db.add_btn.text() == self.tr("Update"):
+                remove_product()
+
+            try:
+                self.database.add(new_item)
+            except NameError:
+                self.info_msg(self.tr("Missing title for product."))
+            except ValueError:
+                self.info_msg(self.tr("Product already exists in database."))
+            else:
+                self.db.db_title.setText("")
+                self.upd_combobox()
+                update_table()
+                reset_input()
+
+
+        def edit_product(row, column):
+            select = self.database.select_row(row)
+            self.db.table.selectRow(row)
+            self.db.db_title.setText(select[0][0])
+            self.db.db_fat.setValue(select[0][1])
+            self.db.db_satfat.setValue(select[0][2])
+            self.db.db_carb.setValue(select[0][3])
+            self.db.db_sugar.setValue(select[0][4])
+            self.db.db_prot.setValue(select[0][5])
+            self.db.db_salt.setValue(select[0][6])
+            self.db.db_fiber.setValue(select[0][7])
+            self.db.rm_btn.setEnabled(True)
+            self.db.add_btn.setText(self.tr("Update"))
+
+        def remove_product():
+            try:
+                self.database.remove(self.db.db_title.text())
+            except NameError:
+                self.info_msg(self.tr("No product selected for removal."))
+            else:
+                update_table()
+                self.upd_combobox()
+                self.db.add_btn.setText(self.tr("Add"))
+                self.db.rm_btn.setEnabled(False)
+
+        def reset_input():
+            self.db.db_title.setText("")
+            self.db.db_fat.setValue(0)
+            self.db.db_satfat.setValue(0)
+            self.db.db_carb.setValue(0)
+            self.db.db_sugar.setValue(0)
+            self.db.db_prot.setValue(0)
+            self.db.db_salt.setValue(0)
+            self.db.db_fiber.setValue(0)
+            self.db.add_btn.setText(self.tr("Add"))
+            self.db.rm_btn.setEnabled(False)
+
+        self.dialog = QDialog(self)
+        self.db = Ui_Dialog()
+        self.db.setupUi(self.dialog)
+        update_table()
+        reset_input()
+        self.dialog.show()
+        self.db.table.cellClicked.connect(edit_product)
+        self.db.rm_btn.clicked.connect(remove_product)
+        self.db.add_btn.clicked.connect(add_product)
+
+
     def clear(self):
     # Clear value in all QSpinBox, QComboBox, QLabel and QLineEdit (total vikt)
         for index in range(len(self.ComboBox_tuple)):
@@ -91,14 +200,14 @@ class MainWindow(QMainWindow):
             if index+1 != len(self.ComboBox_tuple):
                 self.ComboBox_tuple[index+1].setEnabled(False)
 
-        self.ui.fat_value.setText(f"g")
-        self.ui.sat_fat_value.setText(f"g")
-        self.ui.carb_value.setText(f"g")
-        self.ui.sugar_value.setText(f"g")
-        self.ui.protein_value.setText(f"g")
-        self.ui.salt_value.setText(f"g")
-        self.ui.fiber_value.setText(f"g")
-        self.ui.energy_value.setText(f"kcal/kj")
+        self.ui.fat_value.setText(f"0g")
+        self.ui.sat_fat_value.setText(f"0g")
+        self.ui.carb_value.setText(f"0g")
+        self.ui.sugar_value.setText(f"0g")
+        self.ui.protein_value.setText(f"0g")
+        self.ui.salt_value.setText(f"0g")
+        self.ui.fiber_value.setText(f"0g")
+        self.ui.energy_value.setText(f"0kcal/0kj")
 
 def main(VERSION, APPLICATION):
     app = QApplication(sys.argv)
