@@ -2,58 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="sv_SE">
 <context>
-    <name></name>
-    <message>
-        <location filename="../src/database.py" line="81"/>
-        <location filename="../src/database.py" line="97"/>
-        <source>Update</source>
-        <translation>Uppdatera</translation>
-    </message>
-    <message>
-        <location filename="../src/database.py" line="90"/>
-        <location filename="../src/database.py" line="142"/>
-        <source>Add</source>
-        <translation>Lägg till</translation>
-    </message>
-    <message>
-        <location filename="../src/database.py" line="44"/>
-        <location filename="../src/database.py" line="101"/>
-        <source>Missing title for product.</source>
-        <translation>Produkten saknar titel.</translation>
-    </message>
-    <message>
-        <location filename="../src/database.py" line="29"/>
-        <source>Could not create database.</source>
-        <translation>Kunde inte skapa databas.</translation>
-    </message>
-    <message>
-        <location filename="../src/database.py" line="36"/>
-        <source>Could not load database.</source>
-        <translation>Kunde inte ladda databas.</translation>
-    </message>
-    <message>
-        <location filename="../src/database.py" line="38"/>
-        <source>No path for database.</source>
-        <translation>Ingen sökväg för databas.</translation>
-    </message>
-    <message>
-        <location filename="../src/database.py" line="46"/>
-        <location filename="../src/database.py" line="104"/>
-        <source>Product already exists in database.</source>
-        <translation>Produkten finns redan i databasen.</translation>
-    </message>
-    <message>
-        <location filename="../src/database.py" line="63"/>
-        <source>Title</source>
-        <translation>Titel</translation>
-    </message>
-    <message>
-        <location filename="../src/database.py" line="93"/>
-        <source>No product selected for removal.</source>
-        <translation>Ingen produkt vald för borttagning.</translation>
-    </message>
-</context>
-<context>
     <name>Dialog</name>
     <message>
         <location filename="../src/BaseWindow.ui" line="14"/>
@@ -120,12 +68,12 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/main.py" line="36"/>
+        <location filename="../src/main.py" line="111"/>
         <source>Saturates</source>
         <translation>Mättat fett</translation>
     </message>
     <message>
-        <location filename="../src/main.py" line="37"/>
+        <location filename="../src/main.py" line="112"/>
         <source>Sugars</source>
         <translation>Sockerarter</translation>
     </message>
@@ -140,7 +88,7 @@
         <translation>Ingredienser</translation>
     </message>
     <message>
-        <location filename="../src/main.py" line="36"/>
+        <location filename="../src/main.py" line="111"/>
         <location filename="../src/MainWindow.ui" line="102"/>
         <source>Product</source>
         <translation>Produkt</translation>
@@ -177,34 +125,67 @@
         <translation>    varav sockerarter</translation>
     </message>
     <message>
-        <location filename="../src/main.py" line="36"/>
+        <location filename="../src/main.py" line="111"/>
         <location filename="../src/MainWindow.ui" line="1151"/>
         <source>Fat</source>
         <translation>Fett</translation>
     </message>
     <message>
-        <location filename="../src/main.py" line="38"/>
+        <location filename="../src/main.py" line="114"/>
         <location filename="../src/MainWindow.ui" line="1173"/>
         <source>Fiber</source>
         <translation>Fiber</translation>
     </message>
     <message>
-        <location filename="../src/main.py" line="37"/>
+        <location filename="../src/main.py" line="112"/>
         <location filename="../src/MainWindow.ui" line="1192"/>
         <source>Carbohydrate</source>
         <translation>Kolhydrater</translation>
     </message>
     <message>
-        <location filename="../src/main.py" line="38"/>
+        <location filename="../src/main.py" line="58"/>
+        <source>Could not load database.</source>
+        <translation>Kunde inte ladda databas.</translation>
+    </message>
+    <message>
+        <location filename="../src/main.py" line="99"/>
+        <location filename="../src/main.py" line="136"/>
+        <source>Missing title for product.</source>
+        <translation>Produkten saknar titel.</translation>
+    </message>
+    <message>
+        <location filename="../src/main.py" line="101"/>
+        <location filename="../src/main.py" line="138"/>
+        <source>Product already exists in database.</source>
+        <translation>Produkten finns redan i databasen.</translation>
+    </message>
+    <message>
+        <location filename="../src/main.py" line="106"/>
+        <source>Title</source>
+        <translation>Titel</translation>
+    </message>
+    <message>
+        <location filename="../src/main.py" line="113"/>
         <location filename="../src/MainWindow.ui" line="1233"/>
         <source>Salt</source>
         <translation>Salt</translation>
     </message>
     <message>
-        <location filename="../src/main.py" line="38"/>
+        <location filename="../src/main.py" line="113"/>
         <location filename="../src/MainWindow.ui" line="1274"/>
         <source>Protein</source>
         <translation>Protein</translation>
+    </message>
+    <message>
+        <location filename="../src/main.py" line="131"/>
+        <location filename="../src/main.py" line="158"/>
+        <source>Update</source>
+        <translation>Uppdatera</translation>
+    </message>
+    <message>
+        <location filename="../src/main.py" line="164"/>
+        <source>No product selected for removal.</source>
+        <translation>Ingen produkt vald för borttagning.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.ui" line="1338"/>
@@ -232,6 +213,8 @@
         <translation>Titel</translation>
     </message>
     <message>
+        <location filename="../src/main.py" line="168"/>
+        <location filename="../src/main.py" line="180"/>
         <location filename="../src/MainWindow.ui" line="1483"/>
         <source>Add</source>
         <translation>Lägg till</translation>
