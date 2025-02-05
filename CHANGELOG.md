@@ -1,4 +1,6 @@
 ## Version (unreleased)
+
+## Version 1.2.1 - (2025-02-05)
 ### Fixed
 - resources.qrc: AppIcon alias
 - build.py: `check_for_dependencies()` parse requirements.txt using wildcards
