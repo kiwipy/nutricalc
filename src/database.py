@@ -28,18 +28,19 @@ class Database():
 
     def add(self, values):
     # Save new product to database
-        Names = self.cursor.execute(f"SELECT Product FROM products WHERE Product='{values[0]}'").fetchall()
+        get_name = self.cursor.execute(f"SELECT Product FROM products WHERE Product='{values[0]}'").fetchone()
         if values[0] == "":
             raise NameError("Missing title for product.")
-        elif len(Names) > 0 and values[0] == Names[0][0]:
-            raise ValueError("Product already exists in database.")
         else:
-            self.cursor.execute(f"INSERT INTO products VALUES(?, ?, ?, ?, ?, ?, ?, ?)", values)
-            self.database.commit()
+            try:
+                self.cursor.execute(f"INSERT INTO products VALUES(?, ?, ?, ?, ?, ?, ?, ?)", values)
+                self.database.commit()
+            except sqlite3.IntegrityError:
+                raise ValueError("Product already exists in database.")
 
     def remove(self, item):
         if item != "":
-            self.cursor.execute(f"DELETE FROM products WHERE Product = '{item}'")
+            self.cursor.execute(f"DELETE FROM products WHERE Product='{item}'")
             self.database.commit()
         else:
             raise NameError("No product selected for removal.")
@@ -48,7 +49,7 @@ class Database():
         return self.cursor.execute("SELECT Product FROM products")
 
     def get_item(self, item):
-        return self.cursor.execute(f"SELECT * FROM products WHERE Product='{item}'").fetchall()
+        return self.cursor.execute(f"SELECT * FROM products WHERE Product='{item}'").fetchone()
 
     def get_rowcount(self):
         rowcount = self.cursor.execute("SELECT COUNT(*) FROM products").fetchone()[0]
@@ -59,4 +60,4 @@ class Database():
         return self.cursor
 
     def select_row(self, row):
-        return self.cursor.execute(f"SELECT * FROM products LIMIT 1 OFFSET {row}").fetchall()
+        return self.cursor.execute(f"SELECT * FROM products LIMIT 1 OFFSET {row}").fetchone()

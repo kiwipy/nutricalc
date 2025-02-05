@@ -15,15 +15,14 @@ def update_values(self):
         if self.ComboBox_tuple[index].currentIndex() != -1:
             product = self.database.get_item(self.ComboBox_tuple[index].currentText())
             if self.SpinBox_tuple[index].value() != 0:
-                #print(f"{product[0]}")
                 quotient = self.SpinBox_tuple[index].value() / total_amount
-                fat += float(product[0][1]) * quotient
-                sat_fat += float(product[0][2]) * quotient
-                carbs += float(product[0][3]) * quotient
-                sugar += float(product[0][4]) * quotient
-                protein += float(product[0][5]) * quotient
-                salt += float(product[0][6]) * quotient
-                fiber += float(product[0][7]) * quotient
+                fat += float(product[1]) * quotient
+                sat_fat += float(product[2]) * quotient
+                carbs += float(product[3]) * quotient
+                sugar += float(product[4]) * quotient
+                protein += float(product[5]) * quotient
+                salt += float(product[6]) * quotient
+                fiber += float(product[7]) * quotient
 
     # Calculation of 'kj' & 'kcal'
     kj = int((protein*17)+(carbs*17)+(fiber*8)+(fat*37))
