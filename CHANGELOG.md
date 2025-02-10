@@ -1,4 +1,6 @@
 ## Version (unreleased)
+### Changed
+- build.py: replaced if statements for match.
 
 ## Version 1.2.1 - (2025-02-05)
 ### Fixed
