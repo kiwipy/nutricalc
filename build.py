@@ -187,17 +187,18 @@ if __name__=="__main__":
         if option == '--help':
             print_help()
 
-    if option == '--clean':
-        clean_up_project(None)
-    elif option == '--reset':
-        clean_up_project(True)
-    elif option == '--binary':
-        get_virtual_env(option)
-        build_binary_app()
-    elif option == '--source':
-        get_virtual_env(option)
-        compile_project_files()
-        os.system(f"python src/{APP_NAME.lower()}.py")
-    else:
-        print("Invalid option.")
-        sys.exit(1)
+    match option:
+        case '--clean':
+            clean_up_project(None)
+        case '--reset':
+            clean_up_project(True)
+        case '--binary':
+            get_virtual_env(option)
+            build_binary_app()
+        case '--source':
+            get_virtual_env(option)
+            compile_project_files()
+            os.system(f"python src/{APP_NAME.lower()}.py")
+        case default:
+            print("Invalid option.")
+            sys.exit(1)
